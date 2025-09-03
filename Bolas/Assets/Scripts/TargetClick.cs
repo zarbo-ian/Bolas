@@ -3,19 +3,28 @@
 public class TargetClick : MonoBehaviour
 {
     public bool isDangerous = false;
+    public bool gameOver;
+
+    private void Start()
+    {
+        gameOver = false;
+    }
 
     void OnMouseDown()
     {
-        if (isDangerous)
+        if (gameOver == false)
         {
-            // TODO: subtract points / end game / penalty
-        }
-        else
-        {
-            // TODO: add points
-        }
+            if (isDangerous)
+            {
+                // TODO: subtract points / end game / penalty
+            }
+            else
+            {
+                // TODO: add points
+            }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }
 

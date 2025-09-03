@@ -2,17 +2,26 @@ using UnityEngine;
 
 public class TargetMove : MonoBehaviour
 {
+    public bool gameOver = false;
+
     public float speed = 2f;
     private Vector3 direction = Vector3.right;
+    private void Start()
+    {
+        gameOver = false;
+    }
 
     void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
-
-        // Destroy when off screen
-        if (transform.position.x > 12f || transform.position.x < -12f)
+        if (gameOver == false)
         {
-            Destroy(gameObject);
+            transform.Translate(direction * speed * Time.deltaTime);
+
+            // Destroy when off screen
+            if (transform.position.x > 12f || transform.position.x < -12f)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

@@ -5,17 +5,25 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
-    public float startTime = 30f;     // seconds, adjustable
+    public float startTime = 30f;
     private float currentTime;
 
     private bool gameActive = true;
 
-    public GameObject endScreenTexture; // A UI Image/Panel covering the screen
+    public RectTransform endScreenTexture;
+    public Spawner spawner;
+
+    public TargetMove targetMove;
+    public TargetClick targetClick;
+    public TargetMove targetMoveDanger;
+    public TargetClick targetClickDanger;
 
     void Start()
     {
         currentTime = startTime;
-        endScreenTexture.SetActive(false); // Hide at start
+
+        if (endScreenTexture != null)
+            endScreenTexture.gameObject.SetActive(false); // hide overlay at start
     }
 
     void Update()
@@ -30,7 +38,6 @@ public class GameManager : MonoBehaviour
             EndGame();
         }
 
-        // Update timer text (format: 00:00)
         int seconds = Mathf.CeilToInt(currentTime);
         timerText.text = seconds.ToString();
     }
@@ -39,28 +46,53 @@ public class GameManager : MonoBehaviour
     {
         gameActive = false;
 
+        // Stop new spawns
+        if (spawner != null)
+            spawner.enabled = false;
+
         // Halt all target movement
         TargetMove[] targets = FindObjectsOfType<TargetMove>();
         foreach (var t in targets)
-        {
-            t.enabled = false; // stop movement
-        }
+            t.enabled = false;
 
-        // Also prevent further clicking
+        // Disable clicking
         TargetClick[] clicks = FindObjectsOfType<TargetClick>();
         foreach (var c in clicks)
-        {
             c.enabled = false;
-        }
 
-        // Wait 2 seconds, then show overlay
+        //This is brute forced
+        targetMove.gameOver = true;
+        targetClick.gameOver = true;
+        targetMoveDanger.gameOver = true;
+        targetClickDanger.gameOver = true;
+
         StartCoroutine(ShowEndScreen());
     }
 
     IEnumerator ShowEndScreen()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
 
-        endScreenTexture.SetActive(true); // show second screen
+        if (endScreenTexture != null)
+        {
+            endScreenTexture.gameObject.SetActive(true);
+
+            // Animate it lowering from top
+            Vector2 startPos = new Vector2(0, Screen.height);
+            Vector2 endPos = Vector2.zero;
+            float duration = 1f;
+            float elapsed = 0f;
+
+            endScreenTexture.anchoredPosition = startPos;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                endScreenTexture.anchoredPosition = Vector2.Lerp(startPos, endPos, elapsed / duration);
+                yield return null;
+            }
+
+            endScreenTexture.anchoredPosition = endPos;
+        }
     }
 }

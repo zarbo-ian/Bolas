@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{4125691F-6A67-8924-0B29-880F647CEDBE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4125691F-6A67-8924-0B29-880F647CEDBE}|Assembly-CSharp.csproj|c:\\bolas\\bolas\\assets\\scripts\\spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4125691F-6A67-8924-0B29-880F647CEDBE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4125691F-6A67-8924-0B29-880F647CEDBE}|Assembly-CSharp.csproj|C:\\Bolas\\Bolas\\assets\\scripts\\targetmove.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4125691F-6A67-8924-0B29-880F647CEDBE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\targetmove.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4125691F-6A67-8924-0B29-880F647CEDBE}|Assembly-CSharp.csproj|C:\\Bolas\\Bolas\\assets\\scripts\\targetclick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4125691F-6A67-8924-0B29-880F647CEDBE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\targetclick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4125691F-6A67-8924-0B29-880F647CEDBE}|Assembly-CSharp.csproj|C:\\Bolas\\Bolas\\assets\\scripts\\targetmove.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4125691F-6A67-8924-0B29-880F647CEDBE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\targetmove.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4125691F-6A67-8924-0B29-880F647CEDBE}|Assembly-CSharp.csproj|C:\\Bolas\\Bolas\\assets\\scripts\\spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4125691F-6A67-8924-0B29-880F647CEDBE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,22 +36,23 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
               "ToolTip": "C:\\Bolas\\Bolas\\Assets\\Scripts\\GameManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADYAAAAAAAAA",
+              "ViewState": "AQIAACoAAAAAAAAAAAAYwD8AAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-03T18:37:48.851Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "TargetMove.cs",
               "DocumentMoniker": "C:\\Bolas\\Bolas\\Assets\\Scripts\\TargetMove.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\TargetMove.cs",
               "ToolTip": "C:\\Bolas\\Bolas\\Assets\\Scripts\\TargetMove.cs",
               "RelativeToolTip": "Assets\\Scripts\\TargetMove.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAXAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-03T17:55:52.48Z"
+              "WhenOpened": "2025-09-03T17:55:52.48Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -61,19 +62,20 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\TargetClick.cs",
               "ToolTip": "C:\\Bolas\\Bolas\\Assets\\Scripts\\TargetClick.cs",
               "RelativeToolTip": "Assets\\Scripts\\TargetClick.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-03T17:54:42.203Z"
+              "WhenOpened": "2025-09-03T17:54:42.203Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Spawner.cs",
               "DocumentMoniker": "C:\\Bolas\\Bolas\\Assets\\Scripts\\Spawner.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Spawner.cs",
               "ToolTip": "C:\\Bolas\\Bolas\\Assets\\Scripts\\Spawner.cs",
               "RelativeToolTip": "Assets\\Scripts\\Spawner.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAArAAAA",
+              "ViewState": "AQIAACQAAAAAAAAAAAAYwCsAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-03T17:49:29.429Z",
               "EditorCaption": ""
