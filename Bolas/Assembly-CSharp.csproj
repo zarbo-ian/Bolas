@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\TargetMove.cs" />
     <Compile Include="Assets\Scripts\TargetClick.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
