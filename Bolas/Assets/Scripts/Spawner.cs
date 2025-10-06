@@ -17,9 +17,26 @@ public class Spawner : MonoBehaviour
 
     private int lastRow = -1; // no row yet
 
+    // NEW: controlar arranque desde GameManager
+    public bool autoStart = false;
+
     void Start()
     {
+        if (autoStart)
+            StartSpawning();
+    }
+
+    public void StartSpawning()
+    {
+        CancelInvoke(nameof(SpawnTarget));
         InvokeRepeating(nameof(SpawnTarget), 1f, spawnInterval);
+        enabled = true;
+    }
+
+    public void StopSpawning()
+    {
+        CancelInvoke(nameof(SpawnTarget));
+        enabled = false;
     }
 
     void SpawnTarget()
