@@ -3,28 +3,27 @@
 public class TargetClick : MonoBehaviour
 {
     public bool isDangerous = false;
-    public bool gameOver;
+    public ScoreManager scoreManager;
 
-    private void Start()
+    public bool gameOver = false;
+    void Start()
     {
-        gameOver = false;
+        if (scoreManager == null)
+            scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     void OnMouseDown()
     {
-        if (gameOver == false)
+        if (gameOver) return;
+
+        if (scoreManager != null)
         {
             if (isDangerous)
-            {
-                // TODO: subtract points / end game / penalty
-            }
+                scoreManager.OnDangerHit(); //ඞ
             else
-            {
-                // TODO: add points
-            }
-
-            Destroy(gameObject);
+                scoreManager.OnSafeHit();
         }
+
+        Destroy(gameObject);
     }
 }
-

@@ -443,10 +443,13 @@
 "Assets/Scripts/CurtainController.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/MainMenu.cs"
+"Assets/Scripts/ResultsPanelController.cs"
+"Assets/Scripts/ScoreManager.cs"
 "Assets/Scripts/Spawner.cs"
 "Assets/Scripts/TargetClick.cs"
 "Assets/Scripts/TargetMove.cs"
 "Assets/Scripts/TextWobble.cs"
+"Assets/Scripts/UIFeedback.cs"
 -langversion:9.0
 /deterministic
 /optimize+

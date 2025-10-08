@@ -61,12 +61,15 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.42f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\CurtainController.cs" />
     <Compile Include="Assets\Scripts\TargetMove.cs" />
+    <Compile Include="Assets\Scripts\ResultsPanelController.cs" />
     <Compile Include="Assets\Scripts\TargetClick.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\TextWobble.cs" />
+    <Compile Include="Assets\Scripts\UIFeedback.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>

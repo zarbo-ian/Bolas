@@ -1,13 +1,19 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     [Header("UI - In Game Timer")]
     public TextMeshProUGUI timerText;
+    public Color normalTimerColor = Color.white;
+    public Color lowTimeColor = Color.red;
+    public UIFeedback timerFX;
     public float startTime = 30f;
     private float currentTime;
+
+    private int lastDisplayedSecond = -1;
 
     private bool gameActive = false;
 
@@ -19,7 +25,7 @@ public class GameManager : MonoBehaviour
     [Header("Countdown Inicial")]
     public TextMeshProUGUI pregameCountdownText;
     public int pregameCountdownFrom = 3;
-    public float pregameLastWordHold = 0.5f; // cuánto dura "¡YA!"
+    public float pregameLastWordHold = 0.4f; // cuánto dura "¡YA!"
 
     [Header("Gameplay")]
     public Spawner spawner;
@@ -28,6 +34,12 @@ public class GameManager : MonoBehaviour
     public TargetClick targetClick;
     public TargetMove targetMoveDanger;
     public TargetClick targetClickDanger;
+
+    [Header("Results")]
+    public ResultsPanelController resultsPanel;
+    public ScoreManager scoreManager;
+    public float resultsHoldSeconds = 2.5f; // cuánto tiempo quedan visibles antes del fade y salida
+    public string mainMenuSceneName = "MainMenu";
 
     void Start()
     {
@@ -42,36 +54,45 @@ public class GameManager : MonoBehaviour
             endScreenTexture.anchoredPosition = curtainDownPos; // abajo (tapando)
         }
 
-        // Asegurar spawner detenido hasta que arranque el juego
         if (spawner != null)
             spawner.StopSpawning();
 
-        // Ocultar timer in-game si querés hasta que comience
         if (timerText != null)
             timerText.text = Mathf.CeilToInt(startTime).ToString();
 
-        // Mostrar countdown y correr pre-game
         if (pregameCountdownText != null)
             pregameCountdownText.gameObject.SetActive(true);
 
         StartCoroutine(PreGameSequence());
     }
-
     void Update()
     {
         if (!gameActive) return;
 
         currentTime -= Time.deltaTime;
-
-        if (currentTime <= 0)
+        if (currentTime <= 0f)
         {
-            currentTime = 0;
+            currentTime = 0f;
             EndGame();
         }
 
         int seconds = Mathf.CeilToInt(currentTime);
-        if (timerText != null)
+        if (timerText != null && seconds != lastDisplayedSecond)
+        {
             timerText.text = seconds.ToString();
+            lastDisplayedSecond = seconds;
+
+            // Low time feedback
+            if (seconds <= 5)
+            {
+                timerText.color = lowTimeColor;
+                if (timerFX) timerFX.ShakePosition(8f, 0.14f, 40f); // sacudida breve cada cambio de segundo
+            }
+            else
+            {
+                timerText.color = normalTimerColor;
+            }
+        }
     }
 
     IEnumerator PreGameSequence()
@@ -131,9 +152,8 @@ public class GameManager : MonoBehaviour
         currentTime = startTime;
 
         if (spawner != null)
-            spawner.StartSpawning();
+            spawner.StartSpawning(startTime);
 
-        // Si querés resetear flags/estado por las dudas:
         if (targetMove != null) targetMove.gameOver = false;
         if (targetClick != null) targetClick.gameOver = false;
         if (targetMoveDanger != null) targetMoveDanger.gameOver = false;
@@ -159,13 +179,13 @@ public class GameManager : MonoBehaviour
         foreach (var c in clicks)
             c.enabled = false;
 
-        // Brute force flags que ya tenías
+        // Brute force flags
         if (targetMove != null) targetMove.gameOver = true;
         if (targetClick != null) targetClick.gameOver = true;
         if (targetMoveDanger != null) targetMoveDanger.gameOver = true;
         if (targetClickDanger != null) targetClickDanger.gameOver = true;
 
-        // Bajar cortina al final (tu lógica original)
+        // Bajar cortina al final
         StartCoroutine(ShowEndScreen());
     }
 
@@ -177,11 +197,50 @@ public class GameManager : MonoBehaviour
         {
             endScreenTexture.gameObject.SetActive(true);
 
-            // Animar bajando desde arriba a centro
             Vector2 startPos = curtainUpPos;
             Vector2 endPos = curtainDownPos;
             float duration = 1f;
             yield return StartCoroutine(AnimateCurtain(endScreenTexture, startPos, endPos, duration));
         }
+
+        yield return StartCoroutine(ShowResultsThenExit());
     }
-}
+
+    IEnumerator ShowResultsThenExit()
+    {
+        // 1) Mostrar panel de resultados
+        if (resultsPanel != null && scoreManager != null)
+        {
+            int score = scoreManager.CurrentScore;
+            yield return StartCoroutine(resultsPanel.Show(score, resultsHoldSeconds));
+        }
+        else
+        {
+            // si falta algo, al menos esperá un poco para que se vea la cortina
+            yield return new WaitForSecondsRealtime(1.0f);
+        }
+
+        // 2) Volver al menú principal
+        if (!string.IsNullOrEmpty(mainMenuSceneName))
+        {
+            SceneManager.LoadScene(mainMenuSceneName);
+        }
+    }
+
+    public void AdjustTime(float deltaSeconds)
+    {
+        currentTime = Mathf.Clamp(currentTime + deltaSeconds, 0f, startTime);
+        int seconds = Mathf.CeilToInt(currentTime);
+        if (timerText) timerText.text = seconds.ToString();
+
+        if (seconds <= 5)
+        {
+            if (timerText) timerText.color = lowTimeColor;
+        }
+        else
+        {
+            if (timerText) timerText.color = normalTimerColor;
+        }
+    }
+
+}//Atrás choclo de texto!!!
